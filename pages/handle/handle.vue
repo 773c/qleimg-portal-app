@@ -5,15 +5,16 @@
 				<text>图像处理</text>
 			</block>
 		</cu-custom>
-		<view class="flex">
-			<view class="flex-sub padding-tb">
-				
-			</view>
-		</view>
 	</view>
 </template>
 
 <script>
+	export default {
+		components: {},
+		data() {
+		
+		}
+	}
 </script>
 
 <style>

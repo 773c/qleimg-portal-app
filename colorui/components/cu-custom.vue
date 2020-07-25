@@ -3,11 +3,12 @@
 		<view class="cu-custom" :style="[{height:CustomBar + 'px'}]">
 			<view class="cu-bar fixed" :style="style" :class="[bgImage!=''?'none-bg text-white bg-img':'',bgColor]">
 				<view class="action" @tap="BackPage" v-if="isBack">
-					<text class="cuIcon-back"></text>
+					<text class="cuIcon-back" :class="cuIconColor"></text>
 					<slot name="backText"></slot>
 				</view>
 				<view class="content" :style="[{top:StatusBar + 'px'}]">
 					<slot name="content"></slot>
+					<slot name="buttom"></slot>
 				</view>
 				<slot name="right"></slot> 
 			</view>
@@ -49,6 +50,10 @@
 				type: String,
 				default: ''
 			},
+			cuIconColor:{
+				type:String,
+				default:''
+			}
 		},
 		methods: {
 			BackPage() {
