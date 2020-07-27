@@ -2,7 +2,7 @@
 	<view>
 		<cu-custom bgColor="bg-purple" isBack="true">
 			<block slot="backText">返回</block>
-			<block slot="content"><text>图像做差</text></block>
+			<block slot="content"><text>图像标记</text></block>
 		</cu-custom>
 		<view class="flex">
 			<view class="flex-sub">
@@ -15,8 +15,8 @@
 			</view>
 		</view>
 		<view class="beforeHandle-wrapper">
-			<image src="../../static/img/difference-preview.jpg"></image>
-			<image src="../../static/img/difference-preview-1.jpg" style="margin-top: -3px;"></image>
+			<image src="../../static/img/727.png"></image>
+			<image src="../../static/img/727-1.png" style="margin-top: -3px;"></image>
 		</view>
 		<view class="flex">
 			<view class="flex-sub">
@@ -29,7 +29,7 @@
 			</view>
 		</view>
 		<view class="afterHandle-wrapper">
-			<image src="../../static/img/result.jpg"></image>
+			<image src="../../static/img/mark-result.png"></image>
 		</view>
 		<view class="flex">
 			<view class="flex-sub padding-tb" style="padding-top: 0px;padding-bottom: 0px;">
@@ -64,6 +64,9 @@
 					一键生成</button>
 			</view>
 		</view>
+		<!-- <view class="generate-image-wrapper" @tap="ViewGenerateImage" :data-url="generateImage[0]">
+			<image :src="generateImage[0]" mode="aspectFill"></image>
+		</view> -->
 
 		<!-- model模态框 -->
 		<view class="cu-modal" :class="modalName=='Image'?'show':''">
@@ -93,7 +96,6 @@
 
 <script>
 	export default {
-		name: 'imgDifference',
 		data() {
 			return {
 				dataObj: {
@@ -181,6 +183,8 @@
 				})
 			},
 			generateHandler(e) {
+				console.log(this.imgList)
+
 				let imgs = this.imgList.map((value, index) => {
 					return {
 						name: "image" + index,
@@ -190,14 +194,14 @@
 				if (this.imgList.length === 2) {
 					// 判断图像像素是否一致
 					if (this.isEqualPixel) {
-						// 获取上传策略的请求
+						// 获取上传策略的请求 
 						uni.request({
 							url: 'http://192.168.100.10:8002/aliyun/oss/policy',
 							method: 'GET',
 							success: (res) => {
 								//请求成功，开始上传图片
 								uni.uploadFile({
-									url: 'http://192.168.100.10:8002/portal/difference',
+									url: 'http://192.168.100.10:8002/portal/mark',
 									files: imgs,
 									formData: {},
 									method: 'POST',
@@ -213,16 +217,17 @@
 						})
 					} else {
 						uni.showToast({
-						    title: '图像像素不一致',
-						    duration: 2000,
-							icon:'none',
-							position:'top',
-							mask:true
+							title: '图像像素不一致',
+							duration: 2000,
+							icon: 'none',
+							position: 'top',
+							mask: true
 						});
 					}
 				} else {
 					// 图像不满足两张时
 					this.modalName = e.currentTarget.dataset.target
+					this.getImage(index)
 				}
 			},
 			hideModal(e) {
@@ -255,7 +260,7 @@
 	}
 
 	/* .generate-image-wrapper{
-		height: 300px;
-		border: 1px solid red;
-	} */
+				height: 300px;
+				border: 1px solid red;
+			} */
 </style>

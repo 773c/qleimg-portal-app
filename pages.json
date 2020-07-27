@@ -26,9 +26,14 @@
 			}
 		},
 		{
-			"path":"pages/imgDifference/generate/generate",
+			"path":"pages/generate/generate",
+			"style":{}
+		},
+		{
+			"path":"pages/imgMark/imgMark",
 			"style":{}
 		}
+		
 
 	],
 	"globalStyle": {
@@ -39,7 +44,6 @@
 		},
 		"navigationBarBackgroundColor": "#6600cc",
 		"backgroundColor": "#F8F8F8",
-		"enablePullDownRefresh": true,
 		"navigationStyle": "custom" 
 	},
 	"usingComponts": true,

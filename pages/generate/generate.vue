@@ -9,13 +9,13 @@
 		</view>
 		<view class="flex" align="center" style="position: absolute;top: 70px;left: 20px;">
 			<view class="flex-sub padding-tb margin-left-xl">
-				<view class="img-difference-wrapper" @tap="goUrl('../imgDifference')">
+				<view class="img-difference-wrapper" @tap="goUrl('../imgDifference/imgDifference')">
 					<image style="width: 60rpx;height: 60rpx;" src="@/static/img/img-difference.png"></image><br>
 					<text class="text-white text-sm">图像做差</text>
 				</view>
 			</view>
 			<view class="flex-sub padding-tb margin-left-xl">
-				<view class="img-mark-wrapper">
+				<view class="img-mark-wrapper" @tap="goUrl('../imgMark/imgMark')">
 					<image style="width: 60rpx;height: 60rpx;" src="@/static/img/img-mark.png"></image><br>
 					<text class="text-white text-sm">图像标记</text>
 				</view>
@@ -36,7 +36,6 @@
 		<view class="flex" >
 			<view class="flex-sub padding-tb">
 				<view class="generate-image-wrapper" @tap="ViewImage" :data-url="generateImage[0]">
-					
 					<image :src="generateImage[0]"></image>
 				</view>
 			</view>

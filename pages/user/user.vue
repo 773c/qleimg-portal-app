@@ -13,33 +13,6 @@
 						<text class="cuIcon-titles text-red"></text> 
 						<text class="text-gray">我的专属</text> 
 					</view>
-					<!-- <view class="action">
-						<button class="cu-btn bg-green shadow" @tap="showModal" data-target="gridModal">设置</button>
-					</view> -->
-				</view>
-				<view class="cu-modal" :class="modalName=='gridModal'?'show':''" @tap="hideModal">
-					<view class="cu-dialog" @tap.stop>
-						<radio-group class="block" @change="Gridchange">
-							<view class="cu-list menu text-left">
-								<view class="cu-item" v-for="(item,index) in 3" :key="index">
-									<label class="flex justify-between align-center flex-sub">
-										<view class="flex-sub">{{index +3}} 列</view>
-										<radio class="round" :value="(index + 3) + ''" :class="gridCol==index+3?'checked':''" :checked="gridCol==index+3"></radio>
-									</label>
-								</view>
-							</view>
-						</radio-group>
-						<view class="cu-list menu text-left solid-top">
-							<view class="cu-item">
-								<view class="content">
-									<text class="text-grey">边框</text>
-								</view>
-								<view class="action">
-									<switch @change="Gridswitch" :class="gridBorder?'checked':''" :checked="gridBorder?true:false"></switch>
-								</view>
-							</view>
-						</view>
-					</view>
 				</view>
 				<view class="cu-list grid" :class="['col-' + gridCol,gridBorder?'':'no-border']">
 					<view class="cu-item" v-for="(item,index) in cuIconList" :key="index" v-if="index<gridCol*2">
@@ -48,7 +21,7 @@
 								<block v-if="item.badge!=1">{{item.badge>99?'99+':item.badge}}</block>
 							</view>
 						</view>
-						<text>{{item.name}}</text>
+						<text>{{item.name}}</text> 
 					</view>
 				</view>
 			</view>
