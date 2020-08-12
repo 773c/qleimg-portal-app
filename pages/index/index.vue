@@ -31,9 +31,9 @@
 				</view>
 			</view>
 			<view class="flex-sub padding-tb">
-				<view class="img-difference1-wrapper">
-					<image style="width: 105rpx;height: 105rpx;" src="../../static/img/img-difference.png"></image><br>
-					<text>图像做差</text>
+				<view class="img-difference1-wrapper" @tap="goUrl('../area/area')">
+					<image style="width: 105rpx;height: 105rpx;" src="../../static/img/img-areaMark.png"></image><br>
+					<text>面积计算</text>
 				</view>
 			</view>
 			<view class="flex-sub padding-tb">
@@ -47,63 +47,87 @@
 			<view class="flex-sub padding-tb">
 				<view class="page-body">
 					<view class="page-section page-section-gap">
-						<map style="width: 100%; height: 300px;" 
+						<div id="map" class="map"></div>
+						<!-- <map style="width: 100%; height: 300px;" 
 						:latitude="latitude" 
 						:longitude="longitude" 
 						:markers="covers">
-						</map>
+						</map> -->
 					</view>
 				</view>
 			</view>
 		</view>
 	</view>
-</template>
+	</template>
 
-<script>
-	import uniMe from '../swiper/swiper.vue'
-	export default {
-		components: {
-			uniMe
-		},
-		data() {
-			return {
-				id: 0, // 使用 marker点击事件 需要填写id
-				title: 'map',
-				latitude: 39.909,
-				longitude: 116.39742,
-				covers: [{
+	<script>
+		import uniMe from '../swiper/swiper.vue'
+	
+		
+		export default {
+			components: {
+				uniMe
+			},
+			data() {
+				return {
+					id: 0, // 使用 marker点击事件 需要填写id
+					title: 'map',
 					latitude: 39.909,
 					longitude: 116.39742,
-					iconPath: '@/static/img/tabbar-home.png'
-				}, {
-					latitude: 39.90,
-					longitude: 116.39,
-					iconPath: '@/static/img/tabbar-home.png'
-				}]
-			}
-		},
-		methods: {
-			goUrl(url) {
-				uni.navigateTo({
-					url: url
+					covers: [{
+						latitude: 39.909,
+						longitude: 116.39742,
+						iconPath: '@/static/img/tabbar-home.png'
+					}, {
+						latitude: 39.90,
+						longitude: 116.39,
+						iconPath: '@/static/img/tabbar-home.png'
+					}]
+				}
+			},
+			methods: {
+				goUrl(url) {
+					uni.navigateTo({
+						url: url
+					})
+				}
+			},
+			onLoad() {
+				// alert(1)
+				// uni.getLocation({
+				//     type: 'wgs84',
+				//     success: function (res) {
+				//         console.log('当前位置的经度：' + res.longitude);
+				//         console.log('当前位置的纬度：' + res.latitude);
+				//     }
+				// });
+			},
+			mounted() {
+				var map = new this.$map({
+					target: 'map',
+					layers: [
+						//加载天地图
+						new this.$tilelayer({
+							source: new this.$xyz({
+								url: "http://t0.tianditu.gov.cn/img_w/wmts?" +
+									"SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles" +
+									"&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=7e93b5d4a64696df2958666d5922eceb"
+							})
+						})
+					],
+					view: new this.$view({
+						center: [113.36483, 22.98247],
+						zoom: 17,
+						maxZoom: 19,
+						projection: 'EPSG:4326'
+					}),
 				})
 			}
-		},
-		onLoad() {
-			// alert(1)
-			// uni.getLocation({
-			//     type: 'wgs84',
-			//     success: function (res) {
-			//         console.log('当前位置的经度：' + res.longitude);
-			//         console.log('当前位置的纬度：' + res.latitude);
-			//     }
-			// });
 		}
-	}
-</script>
+	</script>
 
-<style>
-	.img-difference-wrapper {
-		/* margin-left: 40rpx; */
-	}
-</style>
+	<style>
+		.img-difference-wrapper {
+			/* margin-left: 40rpx; */
+		}
+	</style>

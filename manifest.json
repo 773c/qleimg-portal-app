@@ -56,6 +56,10 @@
     },
     "h5" : {
         "title" : "ColorUi for UniApp",
-        "domain" : "demo.color-ui.com"
+        "domain" : "demo.color-ui.com",
+        "template" : "",
+        "sdkConfigs" : {
+            "maps" : {}
+        }
     }
 }

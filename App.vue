@@ -1,6 +1,9 @@
 <script>
 	import Vue from 'vue'
 	export default {
+		globalData:{
+			map:null
+		},
 		onLaunch: function() {
 			uni.getSystemInfo({
 				success: function(e) {
@@ -107,6 +110,7 @@
 		},
 		onShow: function() {
 			console.log('App Show')
+			
 		},
 		onHide: function() {
 			console.log('App Hide')

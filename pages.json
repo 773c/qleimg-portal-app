@@ -1,6 +1,9 @@
 {
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		// {
+		// 	"path":"pages/area/area2"
+		// },
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -31,10 +34,16 @@
 		},
 		{
 			"path":"pages/imgMark/imgMark",
-			"style":{}
+			"style":{
+				"navigationBarTitleText": "图像标记"
+			}
+		},
+		{
+			"path":"pages/area/area",
+			"style":{
+				"navigationBarTitleText": "面积计算"
+			}
 		}
-		
-
 	],
 	"globalStyle": {
 		"mp-alipay": {
